@@ -1,0 +1,28 @@
+<div class="pageDiv" th:fragment="html">
+    <nav>
+        <ul class="pagination">
+            <li :class="{ disabled: pagination.first }">
+                <a href="#nowhere" @click="jump('first')">首页</a>
+            </li>
+            <li :class="{ disabled: !pagination.hasPreviousPage }">
+                <a href="#nowhere" @click="jump('pre')">上一页</a>
+            </li>
+            <li :class="{ pagination }">
+                <a href="#nowhere">{{pagination.pageNum}}/{{pagination.pages}}</a>
+            </li>
+            <li :class="{ disabled: !pagination.hasNextPage }">
+                <a href="#nowhere" @click="jump('next')">下一页</a>
+            </li>
+            <li :class="{ disabled: pagination.last }">
+                <a href="#nowhere" @click="jump('last')">尾页</a>
+            </li>
+        </ul>
+        <div class="navbar-form">
+            <div class="form-group">
+                <input type="text" id="go" @keyup.enter="jumpByNumber()" class="form-control" placeholder="输入页码">
+            </div>
+            <button type="submit" @click="jumpByNumber()" class="btn btn-default">跳转</button>
+        </div>
+    </nav>
+    <br>
+</div>

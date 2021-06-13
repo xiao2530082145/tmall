@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mcdh.tmall.dao.PropertyValueDao">
+
+    <resultMap id="propertyValue" type="PropertyValue">
+        <id property="id" column="id"/>
+        <result property="value" column="value"/>
+        <association property="product" javaType="Product">
+            <id property="id" column="pid"/>
+            <result property="name" column="pname"/>
+        </association>
+        <association property="property" javaType="Property">
+            <id property="id" column="ptid"/>
+            <result property="name" column="ptname"/>
+        </association>
+    </resultMap>
+
+    <select id="getPropertyValues" resultMap="propertyValue" parameterType="Product">
+        select propertyvalue.id id,value,pid,ptid,property.name ptname from propertyvalue join property on propertyvalue.ptid = property.id
+        where pid = #{id} order by id desc
+    </select>
+
+    <insert id="addPropertyValue" parameterType="PropertyValue" keyProperty="id" useGeneratedKeys="true">
+        insert into propertyvalue (pid,ptid) values(#{product.id},#{property.id})
+    </insert>
+
+    <select id="getPropertyValueByProductAndProperty" resultMap="propertyValue">
+        select id, pid, ptid, value from propertyvalue where pid = #{product.id} and ptid = #{property.id}
+    </select>
+
+    <update id="uptPropertyValue" parameterType="propertyValue">
+        update propertyvalue set value = #{value} where id = #{id}
+    </update>
+
+</mapper>

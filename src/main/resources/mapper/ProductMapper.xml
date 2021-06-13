@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mcdh.tmall.dao.ProductDao">
+
+    <resultMap id="product" type="Product">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="subTitle" column="subTitle"/>
+        <result property="originalPrice" column="originalPrice"/>
+        <result property="promotePrice" column="promotePrice"/>
+        <result property="stock" column="stock"/>
+        <association property="category" javaType="Category">
+            <id property="id" column="cid"/>
+            <result property="name" column="cname"/>
+        </association>
+    </resultMap>
+
+    <select id="getProductsByCid" resultMap="product">
+        select product.id            id,
+               product.name          name,
+               product.subTitle      subTitle,
+               product.originalPrice originalPrice,
+               product.promotePrice  promotePrice,
+               product.stock         stock
+        from product
+                 join category on product.cid = category.id
+        where category.id = #{id}
+    </select>
+
+    <insert id="addProduct" parameterType="Product" keyProperty="id" useGeneratedKeys="true">
+        insert into product (id, name, subTitle, originalPrice, promotePrice, stock, cid, createDate)
+        values (#{id}, #{name}, #{subTitle}, #{originalPrice}, #{promotePrice}, #{stock}, #{category.id},
+                #{createDate});
+    </insert>
+
+    <delete id="delProduct">
+        delete
+        from product
+        where id = #{id}
+    </delete>
+
+    <select id="getProductById" resultMap="product">
+        select product.id            id,
+               product.name          name,
+               product.subTitle      subTitle,
+               product.originalPrice originalPrice,
+               product.promotePrice  promotePrice,
+               product.stock         stock,
+               category.id           cid,
+               category.name         cname
+        from product
+                 join category on product.cid = category.id
+        where product.id = #{id}
+    </select>
+
+    <update id="updProduct" parameterType="Product">
+        update product
+        set name          = #{name},
+            subTitle      = #{subTitle},
+            originalPrice = #{originalPrice},
+            promotePrice  = #{promotePrice},
+            stock         = #{stock}
+        where id = #{id}
+    </update>
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mcdh.tmall.dao.ProductImageDao">
+
+    <resultMap id="productImage" type="ProductImage">
+        <id property="id" column="id"/>
+        <result property="type" column="type"/>
+        <association property="product" javaType="Product">
+            <id property="id" column="pid"/>
+        </association>
+    </resultMap>
+
+
+    <select id="getProductImageByPidAndType" resultMap="productImage">
+        select id from productimage where type = #{type} and pid = #{pid}
+    </select>
+
+    <insert id="addProductImage" parameterType="productImage" useGeneratedKeys="true" keyProperty="id">
+        insert into productimage (pid, type)
+        values (#{product.id}, #{type})
+    </insert>
+
+    <select id="getProductImageById" resultMap="productImage">
+        select id,type,pid from productimage where id = #{id}
+    </select>
+
+    <delete id="delProductImage" parameterType="productImage">
+        delete from productimage where id = #{id}
+    </delete>
+</mapper>
