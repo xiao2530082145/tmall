@@ -3,13 +3,13 @@ package com.mcdh.tmall.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mcdh.tmall.pojo.Order;
+import com.mcdh.tmall.service.Impl.OrderServiceImpl;
 import com.mcdh.tmall.service.OrderItemService;
 import com.mcdh.tmall.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -27,5 +27,14 @@ public class OrderController {
         orderItemService.fill(list);
         PageInfo<Order> pageInfo = new PageInfo<>(list);
         return pageInfo;
+    }
+
+    @PutMapping("/deliveryOrder/{oid}")
+    public Order deliveryOrder(@PathVariable int oid) {
+        Order order = orderService.getOrderByOid(oid);
+        order.setDeliveryDate(new Date());
+        order.setStatus(OrderServiceImpl.waitConfirm);
+        orderService.uptOrderToDelivery(order);
+        return order;
     }
 }

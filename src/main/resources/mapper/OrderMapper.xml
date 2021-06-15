@@ -44,4 +44,28 @@
         order by oid desc
     </select>
 
+    <select id="getOrderByOid" parameterType="Order" resultMap="order">
+        select order_.id oid,
+               orderCode,
+               address,
+               post,
+               receiver,
+               mobile,
+               userMessage,
+               createDate,
+               payDate,
+               deliveryDate,
+               confirmDate,
+               status,
+               user.id   uid,
+               user.name name
+        from order_
+                 join user
+                      on order_.uid = user.id
+        where order_.id = #{id}
+    </select>
+
+    <update id="uptOrderToDelivery" parameterType="Order">
+        update order_ set deliveryDate = #{deliveryDate}, status = #{status} where id = #{id}
+    </update>
 </mapper>

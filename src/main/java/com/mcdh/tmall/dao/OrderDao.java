@@ -9,4 +9,8 @@ import java.util.List;
 public interface OrderDao {
 
     List<Order> getOrders();
+
+    Order getOrderByOid(int oid);
+
+    void uptOrderToDelivery(Order order);
 }

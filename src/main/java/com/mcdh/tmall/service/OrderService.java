@@ -7,4 +7,9 @@ import java.util.List;
 public interface OrderService {
 
     List<Order> getOrders();
+
+    Order getOrderByOid(int oid);
+
+    void uptOrderToDelivery(Order order);
+
 }
