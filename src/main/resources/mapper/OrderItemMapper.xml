@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mcdh.tmall.dao.OrderItemDao">
+
+    <resultMap id="orderItem" type="OrderItem">
+        <id property="id" column="id"/>
+        <result property="number" column="number"/>
+        <association property="product" javaType="Product">
+            <id property="id" column="pid"/>
+            <result property="name" column="name"/>
+            <result property="promotePrice" column="promotePrice"/>
+        </association>
+    </resultMap>
+
+    <select id="getOrderItemsByOrderId" resultMap="orderItem">
+        select orderitem.id         id,
+               orderitem.number     number,
+               product.id           pid,
+               product.name         name,
+               product.promotePrice promotePrice
+        from orderitem
+                 join product
+                      on orderitem.pid = product.id
+        where orderitem.oid = #{id}
+    </select>
+</mapper>

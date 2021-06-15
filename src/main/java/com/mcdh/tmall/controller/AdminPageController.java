@@ -58,26 +58,21 @@ public class AdminPageController {
     @GetMapping(value="/admin_propertyValue_edit")
     public String editPropertyValue(){
         return "admin/editPropertyValue";
-
     }
 
     //用户管理
     @GetMapping(value="/admin_user_list")
     public String listUser(){
         return "admin/listUser";
+    }
 
+    //订单管理
+    @GetMapping(value="/admin_order_list")
+    public String listOrder(){
+        return "admin/listOrder";
     }
 
 
-
-
-//    @GetMapping(value="/admin_order_list")
-//    public String listOrder(){
-//        return "admin/listOrder";
-//
-//    }
-//
-//
 
 
 

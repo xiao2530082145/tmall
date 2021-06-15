@@ -6,11 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
-public class ProductImage {
+public class OrderItem {
+
     private int id;
-    private String type;
     private Product product;
+    private Order order;
+    private User user;
+    private int number;
 }

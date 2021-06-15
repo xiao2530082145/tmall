@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mcdh.tmall.dao.OrderDao">
+
+    <resultMap id="order" type="Order">
+        <id property="id" column="oid"/>
+        <result property="orderCode" column="orderCode"/>
+        <result property="address" column="address"/>
+        <result property="post" column="post"/>
+        <result property="receiver" column="receiver"/>
+        <result property="mobile" column="mobile"/>
+        <result property="userMessage" column="userMessage"/>
+        <result property="createDate" column="createDate" javaType="Date"/>
+        <result property="payDate" column="payDate" javaType="Date"/>
+        <result property="deliveryDate" column="deliveryDate" javaType="Date"/>
+        <result property="confirmDate" column="confirmDate" javaType="Date"/>
+        <result property="status" column="status"/>
+        <association property="user" javaType="User">
+            <id property="id" column="uid"/>
+            <result property="name" column="name"/>
+        </association>
+    </resultMap>
+
+    <select id="getOrders" resultMap="order">
+        select order_.id oid,
+               orderCode,
+               address,
+               post,
+               receiver,
+               mobile,
+               userMessage,
+               createDate,
+               payDate,
+               deliveryDate,
+               confirmDate,
+               status,
+               user.id   uid,
+               user.name name
+        from order_
+                 join user
+                      on order_.uid = user.id
+        order by oid desc
+    </select>
+
+</mapper>
