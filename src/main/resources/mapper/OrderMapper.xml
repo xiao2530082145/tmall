@@ -66,6 +66,9 @@
     </select>
 
     <update id="uptOrderToDelivery" parameterType="Order">
-        update order_ set deliveryDate = #{deliveryDate}, status = #{status} where id = #{id}
+        update order_
+        set deliveryDate = #{deliveryDate},
+            status       = #{status}
+        where id = #{id}
     </update>
 </mapper>

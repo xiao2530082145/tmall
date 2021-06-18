@@ -11,7 +11,9 @@
     </select>
 
     <select id="getCategoryById" resultType="Category">
-        select id, name from category where id = #{id}
+        select id, name
+        from category
+        where id = #{id}
     </select>
 
     <insert id="addCategory" parameterType="Category" useGeneratedKeys="true" keyProperty="id">
@@ -20,11 +22,15 @@
     </insert>
 
     <delete id="delCategory">
-        delete from category where id = #{id}
+        delete
+        from category
+        where id = #{id}
     </delete>
 
     <update id="updCategory" parameterType="Category">
-        update category set name = #{name} where id = #{id}
+        update category
+        set name = #{name}
+        where id = #{id}
     </update>
 
 </mapper>

@@ -5,77 +5,75 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class AdminPageController {
-    @GetMapping(value="/admin")
-    public String admin(){
+    @GetMapping(value = "/admin")
+    public String admin() {
         return "redirect:admin_category_list";
     }
 
 
     //分类跳转
-    @GetMapping(value="/admin_category_list")
-    public String listCategory(){
+    @GetMapping(value = "/admin_category_list")
+    public String listCategory() {
         return "admin/listCategory";
     }
-    @GetMapping(value="/admin_category_edit")
-    public String editCategory(){
+
+    @GetMapping(value = "/admin_category_edit")
+    public String editCategory() {
         return "admin/editCategory";
 
     }
 
 
     //属性跳转
-    @GetMapping(value="/admin_property_list")
-    public String listProperty(){
+    @GetMapping(value = "/admin_property_list")
+    public String listProperty() {
         return "admin/listProperty";
 
     }
-    @GetMapping(value="/admin_property_edit")
-    public String editProperty(){
+
+    @GetMapping(value = "/admin_property_edit")
+    public String editProperty() {
         return "admin/editProperty";
 
     }
 
 
     //产品跳转
-    @GetMapping(value="/admin_product_list")
-    public String listProduct(){
+    @GetMapping(value = "/admin_product_list")
+    public String listProduct() {
         return "admin/listProduct";
 
     }
-    @GetMapping(value="/admin_product_edit")
-    public String editProduct(){
+
+    @GetMapping(value = "/admin_product_edit")
+    public String editProduct() {
         return "admin/editProduct";
 
     }
 
     //产品图片
-    @GetMapping(value="/admin_productImage_list")
-    public String listProductImage(){
+    @GetMapping(value = "/admin_productImage_list")
+    public String listProductImage() {
         return "admin/listProductImage";
     }
 
     //产品属性值
-    @GetMapping(value="/admin_propertyValue_edit")
-    public String editPropertyValue(){
+    @GetMapping(value = "/admin_propertyValue_edit")
+    public String editPropertyValue() {
         return "admin/editPropertyValue";
     }
 
     //用户管理
-    @GetMapping(value="/admin_user_list")
-    public String listUser(){
+    @GetMapping(value = "/admin_user_list")
+    public String listUser() {
         return "admin/listUser";
     }
 
     //订单管理
-    @GetMapping(value="/admin_order_list")
-    public String listOrder(){
+    @GetMapping(value = "/admin_order_list")
+    public String listOrder() {
         return "admin/listOrder";
     }
-
-
-
-
-
 
 
 }

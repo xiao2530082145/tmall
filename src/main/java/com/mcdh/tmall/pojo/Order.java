@@ -35,31 +35,31 @@ public class Order {
     private double total;
     private int totalNumber;
 
-    public String getStatusDesc(){
-        if(null!=statusDesc)
+    public String getStatusDesc() {
+        if (null != statusDesc)
             return statusDesc;
-        String desc ="未知";
-        switch(status){
+        String desc = "未知";
+        switch (status) {
             case OrderServiceImpl.waitPay:
-                desc="待付";
+                desc = "待付";
                 break;
             case OrderServiceImpl.waitDelivery:
-                desc="待发";
+                desc = "待发";
                 break;
             case OrderServiceImpl.waitConfirm:
-                desc="待收";
+                desc = "待收";
                 break;
             case OrderServiceImpl.waitReview:
-                desc="等评";
+                desc = "等评";
                 break;
             case OrderServiceImpl.finish:
-                desc="完成";
+                desc = "完成";
                 break;
             case OrderServiceImpl.delete:
-                desc="刪除";
+                desc = "刪除";
                 break;
             default:
-                desc="未知";
+                desc = "未知";
         }
         statusDesc = desc;
         return statusDesc;

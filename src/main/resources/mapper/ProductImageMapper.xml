@@ -14,7 +14,10 @@
 
 
     <select id="getProductImageByPidAndType" resultMap="productImage">
-        select id from productimage where type = #{type} and pid = #{pid}
+        select id
+        from productimage
+        where type = #{type}
+          and pid = #{pid}
     </select>
 
     <insert id="addProductImage" parameterType="productImage" useGeneratedKeys="true" keyProperty="id">
@@ -23,10 +26,14 @@
     </insert>
 
     <select id="getProductImageById" resultMap="productImage">
-        select id,type,pid from productimage where id = #{id}
+        select id, type, pid
+        from productimage
+        where id = #{id}
     </select>
 
     <delete id="delProductImage" parameterType="productImage">
-        delete from productimage where id = #{id}
+        delete
+        from productimage
+        where id = #{id}
     </delete>
 </mapper>

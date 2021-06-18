@@ -7,5 +7,10 @@ import java.util.List;
 
 @Mapper
 public interface UserDao {
+
     List<User> getUsers();
+
+    User getUserByName(String name);
+
+    void addUser(User user);
 }

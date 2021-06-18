@@ -28,15 +28,15 @@ public class PropertyValueServiceImpl implements PropertyValueService {
 
     @Override
     public PropertyValue getPropertyValueByProductAndProperty(Product product, Property property) {
-        return propertyValueDao.getPropertyValueByProductAndProperty(product,property);
+        return propertyValueDao.getPropertyValueByProductAndProperty(product, property);
     }
 
     @Override
-    public void initPropertyValue(Product product){
+    public void initPropertyValue(Product product) {
         List<Property> properties = propertyDao.getPropertiesByCid(product.getCategory().getId());
         for (Property property : properties) {
-            PropertyValue propertyValue = this.getPropertyValueByProductAndProperty(product,property);
-            if(propertyValue == null){
+            PropertyValue propertyValue = this.getPropertyValueByProductAndProperty(product, property);
+            if (propertyValue == null) {
                 propertyValue = new PropertyValue();
                 propertyValue.setProperty(property);
                 propertyValue.setProduct(product);

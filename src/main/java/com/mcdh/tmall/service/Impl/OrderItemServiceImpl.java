@@ -28,7 +28,7 @@ public class OrderItemServiceImpl implements OrderItemService {
         for (Order order : orders) {
             int totalNumber = 0;
             double total = 0;
-            List<OrderItem> orderItems =  orderItemDao.getOrderItemsByOrderId(order.getId());
+            List<OrderItem> orderItems = orderItemDao.getOrderItemsByOrderId(order.getId());
             for (OrderItem orderItem : orderItems) {
                 productImageService.setFirstProductImage(orderItem.getProduct());
                 totalNumber += orderItem.getNumber();

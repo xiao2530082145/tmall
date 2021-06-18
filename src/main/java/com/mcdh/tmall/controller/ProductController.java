@@ -47,12 +47,12 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public Product getProductById(@PathVariable(value = "id") int id){
+    public Product getProductById(@PathVariable(value = "id") int id) {
         return productService.getProductById(id);
     }
 
     @PutMapping("/products")
-    public Product updProduct(@RequestBody Product product){
+    public Product updProduct(@RequestBody Product product) {
         productService.updProduct(product);
         return product;
     }

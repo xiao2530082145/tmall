@@ -18,14 +18,14 @@ public class PropertyValueController {
     private ProductService productService;
 
     @GetMapping("/products/{pid}/propertyValues")
-    public List<PropertyValue> getPropertyValues(@PathVariable(value = "pid") int pid){
+    public List<PropertyValue> getPropertyValues(@PathVariable(value = "pid") int pid) {
         Product product = productService.getProductById(pid);
         propertyValueService.initPropertyValue(product);
         return propertyValueService.getPropertyValues(product);
     }
 
     @PutMapping("/propertyValues")
-    public PropertyValue uptPropertyValues(@RequestBody PropertyValue propertyValue){
+    public PropertyValue uptPropertyValues(@RequestBody PropertyValue propertyValue) {
         propertyValueService.uptPropertyValue(propertyValue);
         return propertyValue;
     }

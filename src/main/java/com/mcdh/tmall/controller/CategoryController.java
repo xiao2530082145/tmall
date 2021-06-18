@@ -44,12 +44,12 @@ public class CategoryController {
     @DeleteMapping("/categories/{id}")
     public Category delCategory(@PathVariable(value = "id") int id, HttpServletRequest request) {
         List<Property> list = propertyService.getPropertiesByCid(id);
-        if(list.size() != 0) {
+        if (list.size() != 0) {
             return categoryService.getCategoryById(id);
-        }else {
+        } else {
             categoryService.delCategory(id);
             File imageFolder = new File(request.getServletContext().getRealPath("/img/category"));
-            File image = new File(imageFolder,id + ".jpg");
+            File image = new File(imageFolder, id + ".jpg");
             image.delete();
             return null;
         }
@@ -57,14 +57,14 @@ public class CategoryController {
     }
 
     @GetMapping("/categories/{id}")
-    public Category getCategory(@PathVariable(value = "id") int id){
+    public Category getCategory(@PathVariable(value = "id") int id) {
         return categoryService.getCategoryById(id);
     }
 
     @PutMapping("/categories/{id}")
     public Category updCategory(Category category, MultipartFile image, HttpServletRequest request) throws IOException {
         categoryService.updCategory(category);
-        addOrUpdImage(category,image,request);
+        addOrUpdImage(category, image, request);
         return category;
     }
 

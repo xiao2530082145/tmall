@@ -14,23 +14,35 @@
     </resultMap>
 
     <select id="getPropertiesByCid" resultMap="property">
-        select property.id id, property.name name  from property join category on property.cid = category.id where cid = #{cid} order by id DESC
+        select property.id id, property.name name
+        from property
+                 join category on property.cid = category.id
+        where cid = #{cid}
+        order by id DESC
     </select>
 
     <insert id="addProperty" parameterType="Property" useGeneratedKeys="true" keyProperty="id">
-        insert into property (name,cid) values (#{name},#{category.id})
+        insert into property (name, cid)
+        values (#{name}, #{category.id})
     </insert>
 
     <delete id="delProperty">
-        delete from property where id = #{id}
+        delete
+        from property
+        where id = #{id}
     </delete>
 
     <select id="getPropertyById" resultMap="property">
-        select property.id id , property.name name , category.id cid, category.name cname from property join category on property.cid = category.id where property.id = #{id}
+        select property.id id, property.name name, category.id cid, category.name cname
+        from property
+                 join category on property.cid = category.id
+        where property.id = #{id}
     </select>
 
     <update id="updProperty" parameterType="Property">
-        update property set name = #{name} where id = #{id}
+        update property
+        set name = #{name}
+        where id = #{id}
     </update>
 
 </mapper>
