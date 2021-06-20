@@ -19,4 +19,11 @@
         insert into user (name, password)
         values (#{name}, #{password})
     </insert>
+
+    <select id="getUserByNameAndPassword" parameterType="User" resultType="User">
+        select id, name
+        from user
+        where name = #{name}
+          and password = #{password}
+    </select>
 </mapper>

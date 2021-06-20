@@ -3,6 +3,8 @@ package com.mcdh.tmall.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class ForePageController {
 
@@ -23,11 +25,32 @@ public class ForePageController {
         return "fore/register";
     }
 
-    //组成成功
+    //注册成功
     @GetMapping(value = "/registerSuccess")
     public String registerSuccess() {
         return "fore/registerSuccess";
     }
+
+    //登录页面
+    @GetMapping(value = "/login")
+    public String login() {
+        return "fore/login";
+    }
+
+    //注销用户
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("user");
+        return "redirect:home";
+    }
+
+
+
+
+
+
+
+
 
 
 //    @GetMapping(value="/alipay")
@@ -54,10 +77,7 @@ public class ForePageController {
 //    public String confirmPay(){
 //        return "fore/confirmPay";
 //    }
-//    @GetMapping(value="/login")
-//    public String login(){
-//        return "fore/login";
-//    }
+
 //    @GetMapping(value="/orderConfirmed")
 //    public String orderConfirmed(){
 //        return "fore/orderConfirmed";
@@ -79,8 +99,5 @@ public class ForePageController {
 //    public String searchResult(){
 //        return "fore/search";
 //    }
-//    @GetMapping("/forelogout")
-//    public String logout( ) {
-//        return "redirect:home";
-//    }
+
 }

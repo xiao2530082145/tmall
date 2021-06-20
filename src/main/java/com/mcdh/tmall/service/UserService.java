@@ -13,4 +13,6 @@ public interface UserService {
     boolean userIsExist(User user);
 
     void addUser(User user);
+
+    User getUserByNameAndPassword(User user);
 }
